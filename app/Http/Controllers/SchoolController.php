@@ -61,7 +61,14 @@ class SchoolController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $school = school::findOrFail($id);
+        $updated = $school->update($request->all());
+
+        if ($updated) {
+            return redirect()->route("schools.index")->with("success","atualizado com sucesso");
+        }
+        
+        return redirect()->route("schools.edit")->with("error","erro ao atualizar");
     }
 
     /**
