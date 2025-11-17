@@ -24,12 +24,12 @@
 
         <div class="formContainer">
             <label for="cnpj">CNPJ: </label>
-            <input type="number" name="CNPJ" class="input">
+            <input type="text" name="cnpj" class="input">
         </div>
 
         <div class="formContainer">
             <label for="email">email: </label>
-            <input type="number" name="email" class="input">
+            <input type="text" name="email" class="input">
         </div>
 
         <div id="buttonContainer">
