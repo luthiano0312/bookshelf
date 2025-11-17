@@ -52,7 +52,8 @@ class SchoolController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $school = school::findOrFail($id);
+        return view("schools.edit", compact("school"));
     }
 
     /**
