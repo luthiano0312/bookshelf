@@ -29,7 +29,14 @@ class SchoolController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $created = school::create($request->all());
+        
+        if ($created) {
+            return redirect()->route("schools.index")->with("success","cadastrado com sucesso");
+        }
+       
+        return redirect()->route("schools.create")->with("error","erro ao cadastrar");
+        // var_dump($request->all()); 
     }
 
     /**
