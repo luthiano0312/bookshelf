@@ -33,8 +33,8 @@
                 <td class="td">{{ $user->id }}</td>
                 <td class="td">{{ $user->name }}</td>
                 <td class="td">{{ $user->role }}</td>
-                <td class="td">{{ $user->email }}</td>
-                <td class="td">{{ $user->email }}</td>
+                <td class="td">{{ $user->email  }}</td>
+                <td class="td">{{ $user->school_id }}</td>
                 <td class="td" id="action">
                     <a href="{{ route('users.edit', $user->id) }}" id="editButton">Editar</a>
 
