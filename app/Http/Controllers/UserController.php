@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\school;
 
 class UserController extends Controller
 {
@@ -21,7 +22,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $schools = school::all();
+        return view("users.create", compact("schools"));
     }
 
     /**
@@ -29,7 +31,13 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $created = user::create($request->all());
+        
+        if ($created) {
+            return redirect()->route("users.index")->with("success","cadastrado com sucesso");
+        }
+       
+        return redirect()->route("users.create")->with("error","erro ao cadastrar");
     }
 
     /**
