@@ -53,7 +53,9 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $user = user::findOrFail($id);
+        $schools = school::all();
+        return view("users.edit", compact("user"), compact("schools"));
     }
 
     /**
@@ -61,7 +63,14 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $user = user::findOrFail($id);
+        $updated = $user->update($request->all());
+
+        if ($updated) {
+            return redirect()->route("users.index")->with("success","atualizado com sucesso");
+        }
+        
+        return redirect()->route("users.edit")->with("error","erro ao atualizar");
     }
 
     /**
