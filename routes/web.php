@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SchoolController;
+use App\Http\Controllers\categoryController;
 use App\Http\Controllers\ProfileController;
 
 Route::get('/', function () {
@@ -23,3 +24,4 @@ require __DIR__.'/auth.php';
 
 Route::resource("/schools", SchoolController::class);
 Route::resource("/users", UserController::class);
+Route::resource("/categories", categoryController::class);
