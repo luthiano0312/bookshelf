@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\school;
+use Illuminate\Http\Request;
+use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 
 class UserController extends Controller
 {
@@ -29,9 +31,9 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {
-        $created = user::create($request->all());
+        $created = user::create($request->validated());
         
         if ($created) {
             return redirect()->route("users.index")->with("success","cadastrado com sucesso");
@@ -61,10 +63,10 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateUserRequest $request, string $id)
     {
         $user = user::findOrFail($id);
-        $updated = $user->update($request->all());
+        $updated = $user->update($request->validated());
 
         if ($updated) {
             return redirect()->route("users.index")->with("success","atualizado com sucesso");
