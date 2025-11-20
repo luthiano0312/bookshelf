@@ -41,7 +41,7 @@
                     @endforeach
                 </td>
                 
-                <td class="td">{{ $loan->returnDate  }}</td>
+                <td class="td">{{ $loan->returnDate_formatted  }}</td>
                 <td class="td">{{ $loan->status }}</td>
                 <td class="td">{{ $loan->school_id }}</td>
 
