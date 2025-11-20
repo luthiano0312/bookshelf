@@ -33,7 +33,7 @@
         </div>
 
         <div class="formContainer">
-            <label for="role">Nivel: </label>
+            <label for="role">Cargo: </label>
             <input type="number" name="role" class="input">
         </div>
 
