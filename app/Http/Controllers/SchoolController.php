@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\School;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreSchoolRequest;
+use App\Http\Requests\UpdateSchoolRequest;
 
 class SchoolController extends Controller
 {
@@ -30,7 +31,7 @@ class SchoolController extends Controller
      */
     public function store(StoreSchoolRequest $request)
     {
-        $created = school::create($request->all());
+        $created = school::create($request->validated());
         
         if ($created) {
             return redirect()->route("schools.index")->with("success","cadastrado com sucesso");
@@ -60,10 +61,10 @@ class SchoolController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateSchoolRequest $request, string $id)
     {
         $school = school::findOrFail($id);
-        $updated = $school->update($request->all());
+        $updated = $school->update($request->validated());
 
         if ($updated) {
             return redirect()->route("schools.index")->with("success","atualizado com sucesso");
