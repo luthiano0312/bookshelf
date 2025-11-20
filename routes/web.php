@@ -1,11 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BookController;
+use App\Http\Controllers\LoanController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SchoolController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\BookController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CategoryController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -27,3 +28,4 @@ Route::resource("/schools", SchoolController::class);
 Route::resource("/users", UserController::class);
 Route::resource("/categories", CategoryController::class);
 Route::resource("/books", BookController::class);
+Route::resource("/loans", LoanController::class);
