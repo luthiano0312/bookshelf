@@ -19,16 +19,25 @@
         <h1 id="formTitle">editar</h1>
 
         <div class="formContainer">
+            @error ('title')
+                {{ $message }}
+            @enderror
             <label for="title">Titulo: </label>
             <input type="text" name="title" class="input" value="{{ $book->title }}">
         </div>
 
         <div class="formContainer">
+            @error ('author')
+                {{ $message }}
+            @enderror
             <label for="author">Autor: </label>
-            <input type="text" name="author" class="input" value="{{ $book->title }}">
+            <input type="text" name="author" class="input" value="{{ $book->author }}">
         </div>
 
         <div class="formContainer">
+            @error ('category_id')
+                {{ $message }}
+            @enderror
             <select name="category_id">
                 <option value="">selecione</option>
                 @foreach ($categories as $category)
@@ -39,6 +48,9 @@
 
 
         <div class="formContainer">
+            @error ('school_id')
+                {{ $message }}
+            @enderror
             <select name="school_id">
                 @foreach ($schools as $school)
                     <option value="{{ $school->id }}" {{ $book->school_id == $school->id ? 'selected' : '' }} >{{ $school->name }}</option>

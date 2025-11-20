@@ -18,29 +18,41 @@
         <h1 id="formTitle">Cadastrar</h1>
 
         <div class="formContainer">
+            @error ('title')
+                {{ $message }}
+            @enderror
             <label for="title">Titulo: </label>
-            <input type="text" name="title" class="input">
+            <input type="text" name="title" class="input" value="{{ old('title') }}">
         </div>
 
         <div class="formContainer">
+            @error ('author')
+                {{ $message }}
+            @enderror
             <label for="author">Autor: </label>
-            <input type="text" name="author" class="input">
+            <input type="text" name="author" class="input" value="{{ old('author') }}">
         </div>
 
         <div class="formContainer">
+            @error ('category_id')
+                {{ $message }}
+            @enderror
             <select name="category_id">
                 <option value="">selecione</option>
                 @foreach ($categories as $category)
-                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    <option value="{{ $category->id }}" {{ old("category_id") == $category->id ? 'selected' : '' }} >{{ $category->name }}</option>
                 @endforeach
             </select>
         </div>
 
         <div class="formContainer">
+            @error ('school_id')
+                {{ $message }}
+            @enderror
             <select name="school_id">
                 <option value="">selecione</option>
                 @foreach ($schools as $school)
-                    <option value="{{ $school->id }}">{{ $school->name }}</option>
+                    <option value="{{ $school->id }}" {{ old("school_id") == $school->id ? 'selected' : '' }} >{{ $school->name }}</option>
                 @endforeach
             </select>
         </div>
