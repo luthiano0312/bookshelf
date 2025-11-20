@@ -24,8 +24,11 @@
 
         <div class="formContainer">
             <label for="cnpj">CNPJ: </label>
-            <input type="text" name="cnpj" class="input">
+            <input type="text" name="cnpj" class="input" id="cnpj">
         </div>
+        <script>
+            $('#cnpj').mask('00.000.000/0000-00');
+        </script>
 
         <div class="formContainer">
             <label for="email">email: </label>
