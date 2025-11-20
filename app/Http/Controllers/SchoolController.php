@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\School;
+use Illuminate\Http\Request;
+use App\Http\Requests\StoreSchoolRequest;
 
 class SchoolController extends Controller
 {
@@ -27,7 +28,7 @@ class SchoolController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreSchoolRequest $request)
     {
         $created = school::create($request->all());
         
