@@ -29,8 +29,11 @@
 
         <div class="formContainer">
             <label for="returnDate">Data de devolução: </label>
-            <input type="date" name="returnDate" class="input">
+            <input type="text" name="returnDate" class="input" id="returnDate">
         </div>
+        <script>
+            $('#returnDate').mask('00/00/0000');
+        </script>
 
         <div class="formContainer">
             <select name="school_id">
