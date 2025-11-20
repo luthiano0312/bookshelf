@@ -31,7 +31,7 @@
             <tr class="tr">
                 <td class="td">{{ $school->id }}</td>
                 <td class="td">{{ $school->name }}</td>
-                <td class="td">{{ $school->cnpj }}</td>
+                <td class="td">{{ $school->cnpj_formatted }}</td>
                 <td class="td">{{ $school->email }}</td>
                 <td class="td" id="action">
                     <a href="{{ route('schools.edit', $school->id) }}" id="editButton">Editar</a>
