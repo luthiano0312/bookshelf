@@ -2,9 +2,24 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Loan extends Model
 {
     protected $fillable = ["StudentName","book_id","returnDate","school_id"];
+
+    public function getReturnDateFormattedAttribute()
+    {
+        return Carbon::parse($this->returnDate)->format('d/m/Y');
+    }
+
+    public function setReturnDateAttribute($value)
+    {
+        if (preg_match('/\d{2}\/\d{2}\/\d{4}/', $value)) {
+            $value = Carbon::createFromFormat('d/m/Y', $value)->format('Y-m-d');
+        }
+
+        $this->attributes['returnDate'] = $value;
+    }
 }
