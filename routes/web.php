@@ -24,8 +24,28 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-Route::resource("/schools", SchoolController::class);
-Route::resource("/users", UserController::class);
-Route::resource("/categories", CategoryController::class);
-Route::resource("/books", BookController::class);
-Route::resource("/loans", LoanController::class);
+// Route::resource("/schools", SchoolController::class);
+// Route::resource("/categories", CategoryController::class);
+// Route::resource("/users", UserController::class);
+// Route::resource("/books", BookController::class);
+// Route::resource("/loans", LoanController::class);
+
+Route::middleware(['auth', 'role:1'])->group(function () {
+    Route::resource('/schools', SchoolController::class);
+});
+
+Route::middleware(['auth', 'role:1,2,3', 'school'])->group(function () {
+    Route::resource("/categories", CategoryController::class);
+});
+
+Route::middleware(['auth', 'role:1', 'school'])->group(function () {
+    Route::resource("/users", UserController::class);
+});
+
+Route::middleware(['auth', 'role:1,2,3', 'school'])->group(function () {
+    Route::resource("/books", BookController::class);
+});
+
+Route::middleware(['auth', 'role:1,2,3', 'school'])->group(function () {
+    Route::resource("/loans", LoanController::class);
+});
