@@ -19,7 +19,7 @@
 
         <div class="formContainer">
             <label for="name">Nome: </label>
-            <input type="text" name="name" class="input">
+            <input type="text" name="name" class="input" value="{{ old('name') }}">
         </div>
 
         <div class="formContainer">
