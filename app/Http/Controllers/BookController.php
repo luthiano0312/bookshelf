@@ -42,7 +42,6 @@ class BookController extends Controller
         }
        
         return redirect()->route("books.create")->with("error","erro ao cadastrar");
-        // dd($request);
     }
 
     /**
