@@ -6,10 +6,11 @@
 
 @section('content')
 
-    @if (session('error'))
-        <div id="errorMessage">
-            {{ session('error') }}
-        </div>
+    @if ($errors->any())
+        {{ 'asdasdasd' }}
+        @foreach ($errors->all() as $error)
+            {{ $error }}
+        @endforeach
     @endif
 
     <form action="{{ route('loans.update', $loan->id) }}" method="post" id="formCreate">
@@ -19,8 +20,8 @@
         <h1 id="formTitle">editar</h1>
 
         <div class="formContainer">
-            <label for="StudentName">Nome do estudante: </label>
-            <input type="text" name="StudentName" class="input" value="{{ $loan->studentName }}">
+            <label for="studentName">Nome do estudante: </label>
+            <input type="text" name="studentName" class="input" value="{{ $loan->studentName }}">
         </div>
 
         <div class="formContainer">
@@ -37,7 +38,7 @@
             <select name="school_id">
                 <option value="">selecione</option>
                 @foreach ($schools as $school)
-                    <option value="{{ $school->id }}" {{ $user->school_id == $school->id ? 'selected' : '' }} >{{ $school->name }}</option>
+                    <option value="{{ $school->id }}" {{ $loan->school_id == $school->id ? 'selected' : '' }} >{{ $school->name }}</option>
                 @endforeach
             </select>
         </div>
