@@ -6,12 +6,12 @@
 
 @section('content')
 
-    @if ($errors->any())
+    <!-- @if ($errors->any())
         {{ 'asdasdasd' }}
         @foreach ($errors->all() as $error)
             {{ $error }}
         @endforeach
-    @endif
+    @endif -->
 
     <form action="{{ route('loans.store') }}" method="post" id="formCreate">
         @csrf   
@@ -45,17 +45,19 @@
             $('#returnDate').mask('00/00/0000');
         </script>
 
-        <div class="formContainer">
-            @error ('school_id')
-                {{ $message }}
-            @enderror
-            <select name="school_id">
-                <option value="">selecione</option>
-                @foreach ($schools as $school)
-                    <option value="{{ $school->id }}" {{ old("school_id") == $school->id ? 'selected' : '' }} >{{ $school->name }}</option>
-                @endforeach
-            </select>
-        </div>
+        @if(auth()->user()->role == 1)
+            <div class="formContainer">
+                @error ('school_id')
+                    {{ $message }}
+                @enderror
+                <select name="school_id">
+                    <option value="">selecione</option>
+                    @foreach ($schools as $school)
+                        <option value="{{ $school->id }}" >{{ $school->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+        @endif
 
         <input type="hidden" name="status" class="input" id="returnDate" value="ativo">
 

@@ -52,16 +52,19 @@
             </select>
         </div>
 
-        <div class="formContainer">
-            @error ('school_id')
-                {{ $message }}
-            @enderror
-            <select name="school_id">
-                @foreach ($schools as $school)
-                    <option value="{{ $school->id }}" {{ old("school_id") == $school->id ? 'selected' : '' }} >{{ $school->name }}</option>
-                @endforeach
-            </select>
-        </div>
+        @if(auth()->user()->role == 1)
+            <div class="formContainer">
+                @error ('school_id')
+                    {{ $message }}
+                @enderror
+                <select name="school_id">
+                    <option value="">selecione</option>
+                    @foreach ($schools as $school)
+                        <option value="{{ $school->id }}" >{{ $school->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+        @endif
 
         <div id="buttonContainer">
             <div id="cancelContainer">

@@ -12,7 +12,7 @@
             </div>
         @endif
 
-        <a href="{{ route('librarianss.create') }}" id="button">cadastrar</a>
+        <a href="{{ route('librarians.create') }}" id="button">cadastrar</a>
     </div>
 
     <table id="table">
@@ -28,7 +28,7 @@
         </thead>
 
         <tbody id="tbody">
-            @foreach( $librarianss as $librarians)
+            @foreach( $librarians as $librarians)
                 <tr class="tr">
                     <td class="td">{{ $librarians->id }}</td>
                     <td class="td">{{ $librarians->name }}</td>
@@ -36,9 +36,9 @@
                     <td class="td">{{ $librarians->email  }}</td>
                     <td class="td">{{ $librarians->school_id }}</td>
                     <td class="td" id="action">
-                        <a href="{{ route('librarianss.edit', $librarians->id) }}" id="editButton">Editar</a>
+                        <a href="{{ route('librarians.edit', $librarians->id) }}" id="editButton">Editar</a>
 
-                        <form action="{{ route('librarianss.destroy', $librarians->id) }}" method="post" onsubmit="return confirm('tem certeza que deseja excluir?')">
+                        <form action="{{ route('librarians.destroy', $librarians->id) }}" method="post" onsubmit="return confirm('tem certeza que deseja excluir?')">
                             @csrf
                             @method('delete')
 

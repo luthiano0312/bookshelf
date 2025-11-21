@@ -22,13 +22,19 @@
             <input type="text" name="name" class="input" value="{{ old('name') }}">
         </div>
 
-        <div class="formContainer">
-            <select name="school_id">
-                @foreach ($schools as $school)
-                    <option value="{{ $school->id }}">{{ $school->name }}</option>
-                @endforeach
-            </select>
-        </div>
+        @if(auth()->user()->role == 1)
+            <div class="formContainer">
+                @error ('school_id')
+                    {{ $message }}
+                @enderror
+                <select name="school_id">
+                    <option value="">selecione</option>
+                    @foreach ($schools as $school)
+                        <option value="{{ $school->id }}" >{{ $school->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+        @endif
 
         <div id="buttonContainer">
             <div id="cancelContainer">
