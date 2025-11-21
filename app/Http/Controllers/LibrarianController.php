@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class LibrarianController extends Controller
@@ -11,7 +12,7 @@ class LibrarianController extends Controller
      */
     public function index()
     {
-        $librarians = User::all();
+        $librarians = User::FromUserSchool()->get();
         return view("librarians.index", compact("librarians"));
     }
 
@@ -29,7 +30,11 @@ class LibrarianController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
-        $created = User::create($request->validated());
+        $data = $request->all();
+
+        $data['school_id'] = auth()->user()->school_id;
+        
+        $created = User::create($data);
         
         if ($created) {
             return redirect()->route("librarians.index")->with("success","cadastrado com sucesso");
@@ -61,8 +66,12 @@ class LibrarianController extends Controller
      */
     public function update(UpdateUserRequest $request, string $id)
     {
+        $data = $request->all();
+
+        $data['school_id'] = auth()->user()->school_id;
+        
         $librarian = User::findOrFail($id);
-        $updated = $librarian->update($request->validated());
+        $updated = $librarian->update($data);
 
         if ($updated) {
             return redirect()->route("librarians.index")->with("success","atualizado com sucesso");
