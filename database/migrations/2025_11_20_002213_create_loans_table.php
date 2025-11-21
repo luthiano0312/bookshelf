@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('loans', function (Blueprint $table) {
             $table->id();
-            $table->string("StudentName");
+            $table->string("studentName");
             $table->foreignId('book_id')->constrained()->onDelete('cascade');
             $table->date("returnDate");
             $table->string("status")->default("ativo");

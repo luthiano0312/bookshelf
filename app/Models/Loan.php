@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Loan extends Model
 {
-    protected $fillable = ["StudentName","book_id","returnDate","school_id"];
+    protected $fillable = ["studentName","book_id","returnDate","school_id"];
 
     public function getReturnDateFormattedAttribute()
     {
