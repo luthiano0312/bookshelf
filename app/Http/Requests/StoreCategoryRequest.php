@@ -24,7 +24,7 @@ class StoreCategoryRequest extends FormRequest
     {
         return [
             "name" => ["required", Rule::unique('categories')->where('school_id', $this->school_id)],
-            "school_id" => "required"
+            "school_id" => ""
         ];
     }
 }

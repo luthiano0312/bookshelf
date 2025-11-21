@@ -26,7 +26,7 @@ class UpdateCategoryRequest extends FormRequest
         
         return [
             "name" => ["required", Rule::unique('categories')->where('school_id', $this->school_id)->ignore($id)],
-            "school_id" => "required"
+            "school_id" => ""
         ];
     }
 }

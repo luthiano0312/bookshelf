@@ -27,7 +27,7 @@ class StoreLoanRequest extends FormRequest
             "book_id" => "required|unique:loans,book_id",
             "returnDate" => "required|min:10",
             "status" => "",
-            "school_id" => "required"
+            "school_id" => ""
         ];
     }
 }

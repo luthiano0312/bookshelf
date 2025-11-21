@@ -28,7 +28,7 @@ class UpdateLoanRequest extends FormRequest
             "book_id" => "required|unique:loans,book_id," . $id,
             "returnDate" => "required|min:10",
             "status" => "",
-            "school_id" => "required"
+            "school_id" => ""
         ];
     }
 }

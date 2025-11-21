@@ -28,7 +28,7 @@ class UpdateUserRequest extends FormRequest
             "name" => "required|min:3",
             "email" => "required|email|unique:users,email," . $id,
             "role" => "required",
-            "school_id" => "required",       
+            "school_id" => "",       
         ];
     }
 }

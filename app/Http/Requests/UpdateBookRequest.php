@@ -25,7 +25,7 @@ class UpdateBookRequest extends FormRequest
             "title" => "required||min:2",
             "author" => "required|min:3",
             "category_id" => "required",
-            "school_id" => "required"        
+            "school_id" => ""        
         ];
     }
 }
