@@ -47,4 +47,14 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function scopeFromUserSchool($query) {
+        $user = auth()->user();
+
+        if ($user->role == 1) {
+            return $query;
+        }
+
+        return $query->where('school_id', $user->school_id);
+    }
 }

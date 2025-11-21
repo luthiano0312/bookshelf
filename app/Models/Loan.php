@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use App\Scopes\SchoolScope;
 use Illuminate\Database\Eloquent\Model;
 
 class Loan extends Model
@@ -21,5 +22,9 @@ class Loan extends Model
         }
 
         $this->attributes['returnDate'] = $value;
+    }
+
+    protected static function booted() {
+        static::addGlobalScope(new SchoolScope);
     }
 }
