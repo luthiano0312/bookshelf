@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\SchoolController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\LibrarianController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -42,7 +43,7 @@ Route::middleware(['auth', 'role:1', 'school'])->group(function () {
     Route::resource("/users", UserController::class);
 });
 Route::middleware(['auth', 'role:1,2', 'school'])->group(function () {
-    Route::resource("/librarians", UserController::class);
+    Route::resource("/librarians", LibrarianController::class);
 });
 
 Route::middleware(['auth', 'role:1,2,3', 'school'])->group(function () {
