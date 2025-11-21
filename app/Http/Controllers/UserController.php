@@ -33,7 +33,13 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
-        $created = user::create($request->validated());
+        $data = $request->all();
+
+        if (!isset($data['school_id']) || empty($data['school_id'])) {
+            $data['school_id'] = auth()->user()->school_id;
+        }
+
+        $created = user::create($data);
         
         if ($created) {
             return redirect()->route("users.index")->with("success","cadastrado com sucesso");
@@ -65,8 +71,14 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, string $id)
     {
+        $data = $request->all();
+         
+        if (!isset($data['school_id']) || empty($data['school_id'])) {
+            $data['school_id'] = auth()->user()->school_id;
+        }
+
         $user = user::findOrFail($id);
-        $updated = $user->update($request->validated());
+        $updated = $user->update($data);
 
         if ($updated) {
             return redirect()->route("users.index")->with("success","atualizado com sucesso");

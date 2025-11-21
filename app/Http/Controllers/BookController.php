@@ -37,7 +37,11 @@ class BookController extends Controller
      */
     public function store(StoreBookRequest $request)
     {
-        $created = Book::create($request->all());
+        $data = $request->all();
+
+        $data['school_id'] = auth()->user()->school_id;
+
+        $created = Book::create($data);
         
         if ($created) {
             return redirect()->route("books.index")->with("success","cadastrado com sucesso");
@@ -70,8 +74,12 @@ class BookController extends Controller
      */
     public function update(UpdateBookRequest $request, string $id)
     {
+        $data = $request->all();
+
+        $data['school_id'] = auth()->user()->school_id;
+        
         $book = Book::findOrFail($id);
-        $updated = $book->update($request->all());
+        $updated = $book->update($data);
 
         if ($updated) {
             return redirect()->route("books.index")->with("success","atualizado com sucesso");

@@ -33,7 +33,11 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
-        $created = Category::create($request->validated());
+        $data = $request->all();
+
+        $data['school_id'] = auth()->user()->school_id;
+
+        $created = Category::create($data);
         
         if ($created) {
             return redirect()->route("categories.index")->with("success","cadastrado com sucesso");
@@ -65,8 +69,12 @@ class CategoryController extends Controller
      */
     public function update(UpdateCategoryRequest $request, string $id)
     {
+        $data = $request->all();
+
+        $data['school_id'] = auth()->user()->school_id;
+        
         $category = Category::findOrFail($id);
-        $updated = $category->update($request->validated());
+        $updated = $category->update($data);
 
         if ($updated) {
             return redirect()->route("categories.index")->with("success","atualizado com sucesso");

@@ -37,8 +37,12 @@ class LoanController extends Controller
      */
     public function store(StoreLoanRequest $request)
     {   
+        $data = $request->all();
+
+        $data['school_id'] = auth()->user()->school_id;
+        
         // dd($request->validated());
-        $created = Loan::create($request->validated());
+        $created = Loan::create($data);
         
         if ($created) {
             return redirect()->route("loans.index")->with("success","cadastrado com sucesso");
@@ -72,8 +76,12 @@ class LoanController extends Controller
      */
     public function update(UpdateLoanRequest $request, string $id)
     {
+        $data = $request->all();
+
+        $data['school_id'] = auth()->user()->school_id;
+        
         $loan = Loan::findOrFail($id);
-        $updated = $loan->update($request->all());
+        $updated = $loan->update($data);
 
         if ($updated) {
             return redirect()->route("loans.index")->with("success","atualizado com sucesso");
