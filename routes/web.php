@@ -41,6 +41,9 @@ Route::middleware(['auth', 'role:1,2,3', 'school'])->group(function () {
 Route::middleware(['auth', 'role:1', 'school'])->group(function () {
     Route::resource("/users", UserController::class);
 });
+Route::middleware(['auth', 'role:1,2', 'school'])->group(function () {
+    Route::resource("/librarians", UserController::class);
+});
 
 Route::middleware(['auth', 'role:1,2,3', 'school'])->group(function () {
     Route::resource("/books", BookController::class);
