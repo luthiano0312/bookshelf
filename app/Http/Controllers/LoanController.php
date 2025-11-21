@@ -6,6 +6,8 @@ use App\Models\Book;
 use App\Models\Loan;
 use App\Models\School;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreLoanRequest;
+use App\Http\Requests\UpdateLoanRequest;
 
 class LoanController extends Controller
 {
@@ -33,9 +35,10 @@ class LoanController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        $created = Loan::create($request->all());
+    public function store(StoreLoanRequest $request)
+    {   
+        // dd($request->validated());
+        $created = Loan::create($request->validated());
         
         if ($created) {
             return redirect()->route("loans.index")->with("success","cadastrado com sucesso");
@@ -67,7 +70,7 @@ class LoanController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateLoanRequest $request, string $id)
     {
         $loan = Loan::findOrFail($id);
         $updated = $loan->update($request->all());
