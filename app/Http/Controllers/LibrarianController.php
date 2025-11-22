@@ -33,7 +33,9 @@ class LibrarianController extends Controller
     {
         $data = $request->all();
 
-        $data['school_id'] = auth()->user()->school_id;
+        if (!isset($data['school_id']) || empty($data['school_id'])) {
+            $data['school_id'] = auth()->user()->school_id;
+        }
         
         $created = User::create($data);
         
@@ -69,7 +71,9 @@ class LibrarianController extends Controller
     {
         $data = $request->all();
 
-        $data['school_id'] = auth()->user()->school_id;
+        if (!isset($data['school_id']) || empty($data['school_id'])) {
+            $data['school_id'] = auth()->user()->school_id;
+        }
         
         $librarian = User::findOrFail($id);
         $updated = $librarian->update($data);

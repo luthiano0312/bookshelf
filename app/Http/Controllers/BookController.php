@@ -39,7 +39,9 @@ class BookController extends Controller
     {
         $data = $request->all();
 
-        $data['school_id'] = auth()->user()->school_id;
+        if (!isset($data['school_id']) || empty($data['school_id'])) {
+            $data['school_id'] = auth()->user()->school_id;
+        }
 
         $created = Book::create($data);
         
@@ -76,7 +78,9 @@ class BookController extends Controller
     {
         $data = $request->all();
 
-        $data['school_id'] = auth()->user()->school_id;
+        if (!isset($data['school_id']) || empty($data['school_id'])) {
+            $data['school_id'] = auth()->user()->school_id;
+        }
         
         $book = Book::findOrFail($id);
         $updated = $book->update($data);

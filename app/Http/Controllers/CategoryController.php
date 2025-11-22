@@ -35,7 +35,9 @@ class CategoryController extends Controller
     {
         $data = $request->all();
 
-        $data['school_id'] = auth()->user()->school_id;
+        if (!isset($data['school_id']) || empty($data['school_id'])) {
+            $data['school_id'] = auth()->user()->school_id;
+        }
 
         $created = Category::create($data);
         
@@ -71,7 +73,9 @@ class CategoryController extends Controller
     {
         $data = $request->all();
 
-        $data['school_id'] = auth()->user()->school_id;
+        if (!isset($data['school_id']) || empty($data['school_id'])) {
+            $data['school_id'] = auth()->user()->school_id;
+        }
         
         $category = Category::findOrFail($id);
         $updated = $category->update($data);

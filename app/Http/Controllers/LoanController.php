@@ -39,7 +39,9 @@ class LoanController extends Controller
     {   
         $data = $request->all();
 
-        $data['school_id'] = auth()->user()->school_id;
+        if (!isset($data['school_id']) || empty($data['school_id'])) {
+            $data['school_id'] = auth()->user()->school_id;
+        }
         
         // dd($request->validated());
         $created = Loan::create($data);
@@ -78,7 +80,9 @@ class LoanController extends Controller
     {
         $data = $request->all();
 
-        $data['school_id'] = auth()->user()->school_id;
+        if (!isset($data['school_id']) || empty($data['school_id'])) {
+            $data['school_id'] = auth()->user()->school_id;
+        }
         
         $loan = Loan::findOrFail($id);
         $updated = $loan->update($data);
