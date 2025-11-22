@@ -5,55 +5,73 @@
 @section('headerTitle', 'listagem de emprestimos')
 
 @section('content')
-    <div id="buttonAndMessage">
+    <div id="buttonAndMessage" class="w-full flex flex-row-reverse gap-[2%] h-16">
+        <a href="{{ route('loans.create') }}" 
+           id="button" 
+           class="flex justify-center items-center p-6 text-xl text-white bg-blue-500 rounded-xl hover:bg-blue-800">
+            cadastrar
+        </a>
+
         @if (session('success'))
-            <div id="message">
+            <div id="message" class="flex items-center p-6 bg-green-400 w-full rounded-xl text-xl">
                 {{ session('success') }}
             </div>
         @endif
-
-        <a href="{{ route('loans.create') }}" id="button">cadastrar</a>
     </div>
 
-    <table id="table">
-        <thead id="thead">
-            <tr class="tr">
-                <th class="td">ID</th>
-                <th class="td">Nomde do estudante</th>
-                <th class="td">ID do livro</th>
-                <th class="td">Nome do livro</th>
-                <th class="td">Data devolução</th>
-                <th class="td">Status</th>
-                <th class="td">ID da escola</th>
-                <td class="td">ação</td>
+    <table id="table" class="shadow-md overflow-hidden rounded-[2vh] px-4 border border-black-500 bg-white">
+        <thead id="thead" class="bg-blue-800 border-b border-gray-500 text-white">
+            <tr class="h-16">
+                <th class="w-[1%]"></th>
+                <th class="text-left w-[2%] text-xl p-4">ID</th>
+                <th class="text-left w-[20%] text-xl p-4">Nome do estudante</th>
+                <th class="text-left w-[10%] text-xl p-4">ID do livro</th>
+                <th class="text-left w-[20%] text-xl p-4">Nome do livro</th>
+                <th class="text-left w-[15%] text-xl p-4">Data devolução</th>
+                <th class="text-left w-[10%] text-xl p-4">Status</th>
+                <th class="text-left w-[10%] text-xl p-4">ID escola</th>
+                <th class="text-left w-[10%] text-xl p-4">Ação</th>
             </tr>
         </thead>
 
         <tbody id="tbody">
-            @foreach( $loans as $loan)
-            <tr class="tr">
-                <td class="td">{{ $loan->id }}</td>
-                <td class="td">{{ $loan->StudentName }}</td>
-                <td class="td">{{ $loan->book_id }}</td>
-                <td class="td">
-                    @foreach( $books as $book)
+            @foreach($loans as $loan)
+            <tr class="hover:bg-gray-100 border-b border-gray-300">
+                <td class="w-[1%]"></td>
+
+                <td class="text-left w-[2%] text-lg px-4 py-2 font-bold">{{ $loan->id }}</td>
+
+                <td class="text-left w-[20%] text-lg px-4 py-2">{{ $loan->StudentName }}</td>
+
+                <td class="text-left w-[10%] text-lg px-4 py-2">{{ $loan->book_id }}</td>
+
+                <td class="text-left w-[20%] text-lg px-4 py-2">
+                    @foreach($books as $book)
                         {{ $loan->book_id == $book->id ? $book->title : '' }}
                     @endforeach
                 </td>
-                
-                <td class="td">{{ $loan->returnDate_formatted  }}</td>
-                <td class="td">{{ $loan->status }}</td>
-                <td class="td">{{ $loan->school_id }}</td>
 
-                <td class="td" id="action">
-                    <a href="{{ route('loans.edit', $loan->id) }}" id="editButton">Editar</a>
+                <td class="text-left w-[15%] text-lg px-4 py-2">{{ $loan->returnDate_formatted }}</td>
 
-                    <form action="{{ route('loans.destroy', $loan->id) }}" method="post" onsubmit="return confirm('tem certeza que deseja excluir?')">
+                <td class="text-left w-[10%] text-lg px-4 py-2">{{ $loan->status }}</td>
+
+                <td class="text-left w-[10%] text-lg px-4 py-2">{{ $loan->school_id }}</td>
+
+                <td class="text-left w-[10%] text-lg px-4 py-2 flex gap-4" id="action">
+                    <a href="{{ route('loans.edit', $loan->id) }}" 
+                       class="text-blue-600 hover:text-blue-900 font-semibold">Editar</a>
+
+                    <form action="{{ route('loans.destroy', $loan->id) }}" 
+                          method="post" 
+                          onsubmit="return confirm('tem certeza que deseja excluir?')">
+
                         @csrf
                         @method('delete')
 
-                        <input type="submit" value="Excluir" id="deleteButton">
-                    </form>                
+                        <input type="submit" 
+                               value="Excluir" 
+                               class="text-red-600 hover:text-red-900 font-semibold cursor-pointer bg-transparent">
+                    </form>
                 </td>
             </tr>
             @endforeach

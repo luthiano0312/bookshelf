@@ -5,47 +5,54 @@
 @section('headerTitle', 'listagem de usuários')
 
 @section('content')
-    <div id="buttonAndMessage">
+    <div id="buttonAndMessage" class="w-full flex flex-row-reverse gap-[2%] h-16">
+        <a href="{{ route('users.create') }}" id="button" 
+           class="flex justify-center items-center p-6 text-xl text-white bg-blue-500 rounded-xl hover:bg-blue-800">
+            cadastrar
+        </a>
+        
         @if (session('success'))
-            <div id="message">
+            <div id="message" class="flex items-center p-6 bg-green-400 w-full rounded-xl text-xl">
                 {{ session('success') }}
             </div>
         @endif
-
-        <a href="{{ route('users.create') }}" id="button">cadastrar</a>
     </div>
 
-    <table id="table">
-        <thead id="thead">
-            <tr class="tr">
-                <th class="td">ID</th>
-                <th class="td">Nome</th>
-                <th class="td">nivel</th>
-                <th class="td">email</th>
-                <th class="td">ID da escola</th>
-                <td class="td">ação</td>
+    <table id="table" class="shadow-md overflow-hidden rounded-[2vh] px-4 border border-black-500 bg-white w-full">
+        <thead id="thead" class="bg-blue-800 border-b border-gray-500 text-white">
+            <tr class="h-16">
+                <th class="w-[1%]"></th>
+                <th class="text-left w-[5%] text-xl p-4">ID</th>
+                <th class="text-left w-[20%] text-xl p-4">Nome</th>
+                <th class="text-left w-[10%] text-xl p-4">Nível</th>
+                <th class="text-left w-[20%] text-xl p-4">Email</th>
+                <th class="text-left w-[10%] text-xl p-4">ID da escola</th>
+                <th class="text-left w-[10%] text-xl p-4">Ação</th>
             </tr>
         </thead>
 
         <tbody id="tbody">
-            @foreach( $users as $user)
-            <tr class="tr">
-                <td class="td">{{ $user->id }}</td>
-                <td class="td">{{ $user->name }}</td>
-                <td class="td">{{ $user->role }}</td>
-                <td class="td">{{ $user->email  }}</td>
-                <td class="td">{{ $user->school_id }}</td>
-                <td class="td" id="action">
-                    <a href="{{ route('users.edit', $user->id) }}" id="editButton">Editar</a>
+            @foreach ($users as $user)
+                <tr class="hover:bg-gray-100 border-b border-gray-300">
+                    <td class="w-[1%]"></td>
+                    <td class="text-left w-[5%] text-lg px-4 py-2 font-bold">{{ $user->id }}</td>
+                    <td class="text-left w-[20%] text-lg px-4 py-2">{{ $user->name }}</td>
+                    <td class="text-left w-[10%] text-lg px-4 py-2">{{ $user->role }}</td>
+                    <td class="text-left w-[20%] text-lg px-4 py-2">{{ $user->email }}</td>
+                    <td class="text-left w-[10%] text-lg px-4 py-2">{{ $user->school_id }}</td>
 
-                    <form action="{{ route('users.destroy', $user->id) }}" method="post" onsubmit="return confirm('tem certeza que deseja excluir?')">
-                        @csrf
-                        @method('delete')
+                    <td class="text-left w-[10%] text-lg px-4 py-2 flex gap-4">
+                        <a href="{{ route('users.edit', $user->id) }}" class="text-blue-600 hover:text-blue-900 font-semibold">Editar</a>
 
-                        <input type="submit" value="Excluir" id="deleteButton">
-                    </form>                
-                </td>
-            </tr>
+                        <form action="{{ route('users.destroy', $user->id) }}" method="post"
+                              onsubmit="return confirm('tem certeza que deseja excluir?')">
+                            @csrf
+                            @method('delete')
+
+                            <input type="submit" value="Excluir" class="text-red-600 hover:text-red-900 font-semibold cursor-pointer bg-transparent">
+                        </form>
+                    </td>
+                </tr>
             @endforeach
         </tbody>
     </table>
