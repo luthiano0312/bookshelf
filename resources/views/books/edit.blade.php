@@ -2,71 +2,124 @@
 
 @section('title', 'edição')
 
-@section('headerTitle', 'edição de livros')
+@section('headerTitle', 'Edição de livros')
 
 @section('content')
 
     @if (session('error'))
-        <div id="errorMessage">
+        <div class="bg-red-100 border border-red-400 text-red-700 p-3 rounded-xl w-full max-w-2xl mx-auto mb-4">
             {{ session('error') }}
         </div>
     @endif
 
-    <form action="{{ route('books.update', $book->id) }}" method="post" id="formCreate">
+    <form 
+        action="{{ route('books.update', $book->id) }}" 
+        method="post"
+        class="bg-white shadow-md rounded-2xl p-8 w-full max-w-2xl mx-auto mt-6"
+    >
         @csrf   
         @method('put')
 
-        <h1 id="formTitle">editar</h1>
+        <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center">Editar livro</h1>
 
-        <div class="formContainer">
-            @error ('title')
-                {{ $message }}
+        {{-- TÍTULO --}}
+        <div class="mb-5">
+            <label for="title" class="block text-lg font-semibold text-gray-700 mb-1">Título</label>
+            <input 
+                type="text"
+                name="title"
+                value="{{ $book->title }}"
+                class="w-full p-3 border border-gray-300 rounded-xl text-lg
+                       focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+            @error('title')
+                <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
             @enderror
-            <label for="title">Titulo: </label>
-            <input type="text" name="title" class="input" value="{{ $book->title }}">
         </div>
 
-        <div class="formContainer">
-            @error ('author')
-                {{ $message }}
+        {{-- AUTOR --}}
+        <div class="mb-5">
+            <label for="author" class="block text-lg font-semibold text-gray-700 mb-1">Autor</label>
+            <input 
+                type="text"
+                name="author"
+                value="{{ $book->author }}"
+                class="w-full p-3 border border-gray-300 rounded-xl text-lg
+                       focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+            @error('author')
+                <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
             @enderror
-            <label for="author">Autor: </label>
-            <input type="text" name="author" class="input" value="{{ $book->author }}">
         </div>
 
-        <div class="formContainer">
-            @error ('category_id')
-                {{ $message }}
-            @enderror
-            <select name="category_id">
-                <option value="">selecione</option>
+        {{-- CATEGORIA --}}
+        <div class="mb-5">
+            <label for="category_id" class="block text-lg font-semibold text-gray-700 mb-1">Categoria</label>
+
+            <select
+                name="category_id"
+                class="w-full p-3 border border-gray-300 rounded-xl text-lg
+                       focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+                <option value="">Selecione</option>
                 @foreach ($categories as $category)
-                    <option value="{{ $category->id }}" {{ $book->category_id == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
+                    <option 
+                        value="{{ $category->id }}"
+                        {{ $book->category_id == $category->id ? 'selected' : '' }}
+                    >
+                        {{ $category->name }}
+                    </option>
                 @endforeach
             </select>
+
+            @error('category_id')
+                <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
+            @enderror
         </div>
 
+        {{-- ESCOLA (APENAS PARA ADMIN) --}}
         @if(auth()->user()->role == 1)
-            <div class="formContainer">
-                @error ('school_id')
-                    {{ $message }}
-                @enderror
-                <select name="school_id">
-                    <option value="">selecione</option>
+            <div class="mb-5">
+                <label for="school_id" class="block text-lg font-semibold text-gray-700 mb-1">Escola</label>
+
+                <select
+                    name="school_id"
+                    class="w-full p-3 border border-gray-300 rounded-xl text-lg
+                           focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                    <option value="">Selecione</option>
                     @foreach ($schools as $school)
-                        <option value="{{ $school->id }}" >{{ $school->name }}</option>
+                        <option value="{{ $school->id }}">
+                            {{ $school->name }}
+                        </option>
                     @endforeach
                 </select>
+
+                @error('school_id')
+                    <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
+                @enderror
             </div>
         @endif
 
-        <div id="buttonContainer">
-            <div id="cancelContainer">
-                <a href="{{ route('books.index') }}" id="cancel">Cancelar</a>
-            </div>
+        {{-- BOTÕES --}}
+        <div class="flex justify-between mt-8">
+            <a 
+                href="{{ route('books.index') }}"
+                class="px-6 py-3 text-lg bg-gray-300 rounded-xl hover:bg-gray-400
+                       transition font-semibold"
+            >
+                Cancelar
+            </a>
 
-            <input type="submit" value="atualizar" id="create">
+            <button 
+                type="submit"
+                class="px-6 py-3 text-lg bg-blue-600 text-white rounded-xl 
+                       hover:bg-blue-800 transition font-semibold"
+            >
+                Atualizar
+            </button>
         </div>
+
     </form>
-    
+
 @endsection
