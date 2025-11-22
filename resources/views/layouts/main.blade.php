@@ -21,10 +21,16 @@
             <a href="{{ route('schools.index') }}" class="p-[5%] hover:bg-blue-700">Escolas</a>
             <a href="{{ route('users.index') }}" class="p-[5%] hover:bg-blue-700">Usuarios</a>            
         @endif
-        <a href="{{ route('librarians.index') }}" class="p-[5%] hover:bg-blue-700">Bibliotacarios</a>
+        @if(auth()->user()->role == 2)
+            <a href="{{ route('librarians.index') }}" class="p-[5%] hover:bg-blue-700">Bibliotacarios</a>
+        @endif
         <a href="{{ route('categories.index') }}" class="p-[5%] hover:bg-blue-700">Categorias</a>
         <a href="{{ route('books.index') }}" class="p-[5%] hover:bg-blue-700">Livros</a>
         <a href="{{ route('loans.index') }}" class="p-[5%] hover:bg-blue-700">Emprestimos</a>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="mt-auto">
+            @csrf
+            <button type="submit" class="m-[5%]  mb-[10%] hover:underline cursor: pointer w-fit text-3xl">encerrar sessão</button>
+        </form>
     </aside>
 
     <div class="p-[3%] w-full">
