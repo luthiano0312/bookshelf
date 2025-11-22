@@ -2,75 +2,114 @@
 
 @section('title', 'cadastro')
 
-@section('headerTitle', 'Cadastro de usuarios')
+@section('headerTitle', 'Cadastro de usuários')
 
 @section('content')
 
     @if (session('error'))
-        <div id="errorMessage">
+        <div class="w-full max-w-2xl mx-auto bg-red-400 text-white text-lg p-4 rounded-xl mb-4">
             {{ session('error') }}
         </div>
     @endif
 
-    <form action="{{ route('users.store') }}" method="post" id="formCreate">
+    <form action="{{ route('users.store') }}" method="post"
+        class="bg-white shadow-md rounded-2xl p-8 w-full max-w-2xl mx-auto mt-6">
         @csrf   
 
-        <h1 id="formTitle">Cadastrar</h1>
+        <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center">Cadastrar usuário</h1>
 
-        <div class="formContainer">
-            @error ('name')
-                {{ $message }}
+        {{-- Nome --}}
+        <div class="mb-5">
+            <label for="name" class="block text-lg font-semibold text-gray-700 mb-1">Nome</label>
+            <input 
+                type="text"
+                name="name"
+                value="{{ old('name') }}"
+                class="w-full p-3 border border-gray-300 rounded-xl text-lg focus:ring-2 focus:ring-blue-500 outline-none"
+            >
+            @error('name')
+                <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
             @enderror
-            <label for="name">Nome: </label>
-            <input type="text" name="name" class="input" value="{{ old('name') }}">
         </div>
 
-        <div class="formContainer">
-            @error ('email')
-                {{ $message }}
+        {{-- Email --}}
+        <div class="mb-5">
+            <label for="email" class="block text-lg font-semibold text-gray-700 mb-1">Email</label>
+            <input 
+                type="text"
+                name="email"
+                value="{{ old('email') }}"
+                class="w-full p-3 border border-gray-300 rounded-xl text-lg focus:ring-2 focus:ring-blue-500 outline-none"
+            >
+            @error('email')
+                <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
             @enderror
-            <label for="email">Email: </label>
-            <input type="text" name="email" class="input" value="{{ old('email') }}">
         </div>
 
-        <div class="formContainer">
-            @error ('password')
-                {{ $message }}
+        {{-- Senha --}}
+        <div class="mb-5">
+            <label for="password" class="block text-lg font-semibold text-gray-700 mb-1">Senha</label>
+            <input 
+                type="password"
+                name="password"
+                class="w-full p-3 border border-gray-300 rounded-xl text-lg focus:ring-2 focus:ring-blue-500 outline-none"
+            >
+            @error('password')
+                <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
             @enderror
-            <label for="password">Senha: </label>
-            <input type="password" name="password" class="input" value="{{ old('password') }}">
         </div>
 
-        <div class="formContainer">
-            @error ('role')
-                {{ $message }}
-            @enderror
-            <label for="role">Cargo: </label>
-            <select name="role">
-                <option value=1 {{ old("role") == 1 ? 'selected' : '' }} >admin</option>
-                <option value=2 {{ old("role") == 2 ? 'selected' : '' }} >gestor</option>
-                <option value=3 {{ old("role") == 3 ? 'selected' : '' }} >bibliotecario</option>
+        {{-- Cargo --}}
+        <div class="mb-5">
+            <label for="role" class="block text-lg font-semibold text-gray-700 mb-1">Cargo</label>
+            <select 
+                name="role"
+                class="w-full p-3 border border-gray-300 rounded-xl text-lg bg-white focus:ring-2 focus:ring-blue-500 outline-none"
+            >
+                <option value="1" {{ old('role') == 1 ? 'selected' : '' }}>Admin</option>
+                <option value="2" {{ old('role') == 2 ? 'selected' : '' }}>Gestor</option>
+                <option value="3" {{ old('role') == 3 ? 'selected' : '' }}>Bibliotecário</option>
             </select>
+            @error('role')
+                <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
+            @enderror
         </div>
 
-        <div class="formContainer">
-            @error ('school_id')
-                {{ $message }}
-            @enderror
-            <select name="school_id">
+        {{-- Escola --}}
+        <div class="mb-6">
+            <label for="school_id" class="block text-lg font-semibold text-gray-700 mb-1">Escola</label>
+            <select 
+                name="school_id"
+                class="w-full p-3 border border-gray-300 rounded-xl text-lg bg-white focus:ring-2 focus:ring-blue-500 outline-none"
+            >
                 @foreach ($schools as $school)
-                    <option value="{{ $school->id }}" {{ old("school_id") == $school->id ? 'selected' : '' }} >{{ $school->name }}</option>
+                    <option value="{{ $school->id }}" {{ old('school_id') == $school->id ? 'selected' : '' }}>
+                        {{ $school->name }}
+                    </option>
                 @endforeach
             </select>
+            @error('school_id')
+                <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
+            @enderror
         </div>
 
-        <div id="buttonContainer">
-            <div id="cancelContainer">
-                <a href="{{ route('users.index') }}" id="cancel">Cancelar</a>
-            </div>
+        {{-- Botões --}}
+        <div class="flex justify-between mt-8">
+            <a 
+                href="{{ route('users.index') }}"
+                class="px-6 py-3 text-lg bg-gray-300 rounded-xl hover:bg-gray-400 transition font-semibold"
+            >
+                Cancelar
+            </a>
 
-            <input type="submit" value="Cadastrar" id="create">
+            <button 
+                type="submit"
+                class="px-6 py-3 text-lg bg-blue-600 text-white rounded-xl hover:bg-blue-800 transition font-semibold"
+            >
+                Cadastrar
+            </button>
         </div>
+
     </form>
-    
+
 @endsection

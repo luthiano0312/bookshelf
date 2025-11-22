@@ -41,7 +41,7 @@
 
                 <td class="text-left w-[2%] text-lg px-4 py-2 font-bold">{{ $loan->id }}</td>
 
-                <td class="text-left w-[20%] text-lg px-4 py-2">{{ $loan->StudentName }}</td>
+                <td class="text-left w-[20%] text-lg px-4 py-2">{{ $loan->studentName }}</td>
 
                 <td class="text-left w-[10%] text-lg px-4 py-2">{{ $loan->book_id }}</td>
 
