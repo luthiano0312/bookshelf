@@ -10,11 +10,19 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\LibrarianController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login');
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    if (auth()->user()->role == 1) {
+        return redirect()->route('schools.index');
+    }
+    if (auth()->user()->role == 2) {
+        return redirect()->route('librarians.index');
+    }
+    if (auth()->user()->role == 3) {
+        return redirect()->route('loans.index');
+    }
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
