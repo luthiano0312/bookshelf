@@ -24,6 +24,8 @@ class CheckSchoolAccess
         $schoolIdFromRoute = $request->route('school')
                           ?? $request->route('user')
                           ?? $request->route('book')
+                          ?? $request->route('categories')
+                          ?? $request->route('loans')
                           ?? $request->school_id
                           ?? null;
 
