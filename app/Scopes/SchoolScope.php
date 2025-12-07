@@ -12,10 +12,6 @@ class SchoolScope implements Scope
     {
         $user = auth()->user();
 
-        if (!$user) {
-            return;
-        }
-
         if ($user->role == 1) {
             return;
         }
