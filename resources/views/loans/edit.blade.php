@@ -6,7 +6,6 @@
 
 @section('content')
 
-    {{-- ALERTA DE ERROS --}}
     @if ($errors->any())
         <div class="bg-red-100 border border-red-400 text-red-700 p-3 rounded-xl w-full max-w-2xl mx-auto mb-4">
             <strong>Erro:</strong>
@@ -28,7 +27,6 @@
 
         <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center">Editar empréstimo</h1>
 
-        {{-- NOME DO ALUNO --}}
         <div class="mb-5">
             <label for="studentName" class="block text-lg font-semibold text-gray-700 mb-1">
                 Nome do estudante
@@ -47,7 +45,6 @@
             @enderror
         </div>
 
-        {{-- ID DO LIVRO --}}
         <div class="mb-5">
             <label for="book_id" class="block text-lg font-semibold text-gray-700 mb-1">
                 ID do livro
@@ -66,7 +63,6 @@
             @enderror
         </div>
 
-        {{-- DATA DE DEVOLUÇÃO --}}
         <div class="mb-5">
             <label for="returnDate" class="block text-lg font-semibold text-gray-700 mb-1">
                 Data de devolução
@@ -85,7 +81,6 @@
             @enderror
         </div>
 
-        {{-- ESCOLA (ADM) --}}
         @if(auth()->user()->role == 1)
             <div class="mb-5">
                 <label for="school_id" class="block text-lg font-semibold text-gray-700 mb-1">
@@ -114,7 +109,6 @@
             </div>
         @endif
 
-        {{-- BOTÕES --}}
         <div class="flex justify-between mt-8">
             <a 
                 href="{{ route('loans.index') }}"

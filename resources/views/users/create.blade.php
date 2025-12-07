@@ -18,7 +18,6 @@
 
         <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center">Cadastrar usuário</h1>
 
-        {{-- Nome --}}
         <div class="mb-5">
             <label for="name" class="block text-lg font-semibold text-gray-700 mb-1">Nome</label>
             <input 
@@ -32,7 +31,6 @@
             @enderror
         </div>
 
-        {{-- Email --}}
         <div class="mb-5">
             <label for="email" class="block text-lg font-semibold text-gray-700 mb-1">Email</label>
             <input 
@@ -46,7 +44,6 @@
             @enderror
         </div>
 
-        {{-- Senha --}}
         <div class="mb-5">
             <label for="password" class="block text-lg font-semibold text-gray-700 mb-1">Senha</label>
             <input 
@@ -59,7 +56,6 @@
             @enderror
         </div>
 
-        {{-- Cargo --}}
         <div class="mb-5">
             <label for="role" class="block text-lg font-semibold text-gray-700 mb-1">Cargo</label>
             <select 
@@ -75,7 +71,6 @@
             @enderror
         </div>
 
-        {{-- Escola --}}
         <div class="mb-6">
             <label for="school_id" class="block text-lg font-semibold text-gray-700 mb-1">Escola</label>
             <select 
@@ -93,7 +88,6 @@
             @enderror
         </div>
 
-        {{-- Botões --}}
         <div class="flex justify-between mt-8">
             <a 
                 href="{{ route('users.index') }}"

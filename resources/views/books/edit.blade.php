@@ -22,7 +22,6 @@
 
         <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center">Editar livro</h1>
 
-        {{-- TÍTULO --}}
         <div class="mb-5">
             <label for="title" class="block text-lg font-semibold text-gray-700 mb-1">Título</label>
             <input 
@@ -37,7 +36,6 @@
             @enderror
         </div>
 
-        {{-- AUTOR --}}
         <div class="mb-5">
             <label for="author" class="block text-lg font-semibold text-gray-700 mb-1">Autor</label>
             <input 
@@ -52,7 +50,6 @@
             @enderror
         </div>
 
-        {{-- CATEGORIA --}}
         <div class="mb-5">
             <label for="category_id" class="block text-lg font-semibold text-gray-700 mb-1">Categoria</label>
 
@@ -77,7 +74,6 @@
             @enderror
         </div>
 
-        {{-- ESCOLA (APENAS PARA ADMIN) --}}
         @if(auth()->user()->role == 1)
             <div class="mb-5">
                 <label for="school_id" class="block text-lg font-semibold text-gray-700 mb-1">Escola</label>
@@ -101,7 +97,6 @@
             </div>
         @endif
 
-        {{-- BOTÕES --}}
         <div class="flex justify-between mt-8">
             <a 
                 href="{{ route('books.index') }}"

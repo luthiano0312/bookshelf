@@ -6,7 +6,6 @@
 
 @section('content')
 
-    {{-- ERRO DE SESSÃO --}}
     @if (session('error'))
         <div class="bg-red-100 border border-red-400 text-red-700 p-3 rounded-xl w-full max-w-2xl mx-auto mb-4">
             {{ session('error') }}
@@ -23,7 +22,6 @@
 
         <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center">Editar escola</h1>
 
-        {{-- NOME --}}
         <div class="mb-5">
             <label for="name" class="block text-lg font-semibold text-gray-700 mb-1">Nome</label>
 
@@ -40,7 +38,6 @@
             @enderror
         </div>
 
-        {{-- CNPJ --}}
         <div class="mb-5">
             <label for="cnpj" class="block text-lg font-semibold text-gray-700 mb-1">CNPJ</label>
 
@@ -58,14 +55,12 @@
             @enderror
         </div>
 
-        {{-- SCRIPT DA MÁSCARA --}}
         <script>
             document.addEventListener("DOMContentLoaded", () => {
                 $('#cnpj').mask('00.000.000/0000-00');
             });
         </script>
 
-        {{-- EMAIL --}}
         <div class="mb-5">
             <label for="email" class="block text-lg font-semibold text-gray-700 mb-1">Email</label>
 
@@ -82,7 +77,6 @@
             @enderror
         </div>
 
-        {{-- BOTÕES --}}
         <div class="flex justify-between mt-8">
             <a 
                 href="{{ route('schools.index') }}"

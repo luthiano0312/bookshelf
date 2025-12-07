@@ -25,7 +25,6 @@
 
         <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center">Cadastrar empréstimo</h1>
 
-        {{-- NOME DO ESTUDANTE --}}
         <div class="mb-5">
             <label for="studentName" class="block text-lg font-semibold text-gray-700 mb-1">
                 Nome do estudante
@@ -44,7 +43,6 @@
             @enderror
         </div>
 
-        {{-- ID DO LIVRO --}}
         <div class="mb-5">
             <label for="book_id" class="block text-lg font-semibold text-gray-700 mb-1">
                 ID do Livro
@@ -63,7 +61,6 @@
             @enderror
         </div>
 
-        {{-- DATA DE DEVOLUÇÃO --}}
         <div class="mb-5">
             <label for="returnDate" class="block text-lg font-semibold text-gray-700 mb-1">
                 Data de devolução
@@ -87,7 +84,6 @@
             $('#returnDate').mask('00/00/0000');
         </script>
 
-        {{-- ESCOLA (ADMIN) --}}
         @if(auth()->user()->role == 1)
             <div class="mb-5">
                 <label for="school_id" class="block text-lg font-semibold text-gray-700 mb-1">
@@ -113,10 +109,8 @@
             </div>
         @endif
 
-        {{-- STATUS --}}
         <input type="hidden" name="status" value="ativo">
 
-        {{-- BOTÕES --}}
         <div class="flex justify-between mt-8">
             <a 
                 href="{{ route('loans.index') }}"

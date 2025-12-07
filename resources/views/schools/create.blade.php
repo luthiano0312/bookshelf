@@ -12,7 +12,6 @@
 
         <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center">Cadastrar escola</h1>
 
-        {{-- NOME --}}
         <div class="mb-5">
             <label for="name" class="block text-lg font-semibold text-gray-700 mb-1">Nome</label>
             <input 
@@ -26,7 +25,6 @@
             @enderror
         </div>
 
-        {{-- CNPJ --}}
         <div class="mb-5">
             <label for="cnpj" class="block text-lg font-semibold text-gray-700 mb-1">CNPJ</label>
             <input 
@@ -45,7 +43,6 @@
             $('#cnpj').mask('00.000.000/0000-00');
         </script>
 
-        {{-- EMAIL --}}
         <div class="mb-6">
             <label for="email" class="block text-lg font-semibold text-gray-700 mb-1">E-mail</label>
             <input 
@@ -59,7 +56,6 @@
             @enderror
         </div>
 
-        {{-- BUTTONS --}}
         <div class="flex justify-between mt-8">
             <a 
                 href="{{ route('schools.index') }}"

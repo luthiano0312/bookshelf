@@ -6,7 +6,6 @@
 
 @section('content')
 
-    {{-- MENSAGEM DE ERRO --}}
     @if ($errors->any())
         <div class="bg-red-100 border border-red-400 text-red-700 p-3 rounded-xl w-full max-w-2xl mx-auto mb-4">
             @foreach ($errors->all() as $error)
@@ -25,7 +24,6 @@
 
         <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center">Editar bibliotecário</h1>
 
-        {{-- NOME --}}
         <div class="mb-5">
             <label for="name" class="block text-lg font-semibold text-gray-700 mb-1">Nome</label>
             <input 
@@ -40,7 +38,6 @@
             @enderror
         </div>
 
-        {{-- EMAIL --}}
         <div class="mb-5">
             <label for="email" class="block text-lg font-semibold text-gray-700 mb-1">Email</label>
             <input 
@@ -55,7 +52,6 @@
             @enderror
         </div>
 
-        {{-- ROLE / NÍVEL --}}
         <div class="mb-5">
             <label for="role" class="block text-lg font-semibold text-gray-700 mb-1">Nível</label>
             <select 
@@ -73,7 +69,6 @@
             @enderror
         </div>
 
-        {{-- ESCOLA (APENAS PARA ADMIN) --}}
         @if(auth()->user()->role == 1)
             <div class="mb-5">
                 <label for="school_id" class="block text-lg font-semibold text-gray-700 mb-1">Escola</label>
@@ -100,7 +95,6 @@
             </div>
         @endif
 
-        {{-- BOTÕES --}}
         <div class="flex justify-between mt-8">
             <a 
                 href="{{ route('librarians.index') }}"

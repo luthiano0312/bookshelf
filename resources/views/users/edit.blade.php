@@ -6,7 +6,6 @@
 
 @section('content')
 
-    {{-- FORMULÁRIO --}}
     <form 
         action="{{ route('users.update', $user->id) }}" 
         method="post"
@@ -17,7 +16,6 @@
 
         <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center">Editar usuário</h1>
 
-        {{-- NOME --}}
         <div class="mb-5">
             <label for="name" class="block text-lg font-semibold text-gray-700 mb-1">Nome</label>
 
@@ -34,7 +32,6 @@
             @enderror
         </div>
 
-        {{-- EMAIL --}}
         <div class="mb-5">
             <label for="email" class="block text-lg font-semibold text-gray-700 mb-1">Email</label>
 
@@ -51,7 +48,6 @@
             @enderror
         </div>
 
-        {{-- NÍVEL --}}
         <div class="mb-5">
             <label for="role" class="block text-lg font-semibold text-gray-700 mb-1">Nível</label>
 
@@ -70,7 +66,6 @@
             @enderror
         </div>
 
-        {{-- ESCOLA --}}
         <div class="mb-5">
             <label for="school_id" class="block text-lg font-semibold text-gray-700 mb-1">Escola</label>
 
@@ -94,7 +89,6 @@
             @enderror
         </div>
 
-        {{-- BOTÕES --}}
         <div class="flex justify-between mt-8">
             <a 
                 href="{{ route('users.index') }}"

@@ -22,7 +22,6 @@
 
         <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center">Editar categoria</h1>
 
-        {{-- NOME --}}
         <div class="mb-5">
             <label for="name" class="block text-lg font-semibold text-gray-700 mb-1">Nome</label>
 
@@ -39,7 +38,6 @@
             @enderror
         </div>
 
-        {{-- ESCOLA (SOMENTE ADMIN) --}}
         @if(auth()->user()->role == 1)
             <div class="mb-5">
                 <label for="school_id" class="block text-lg font-semibold text-gray-700 mb-1">Escola</label>
@@ -67,7 +65,6 @@
             </div>
         @endif
 
-        {{-- BOTÕES --}}
         <div class="flex justify-between mt-8">
             <a 
                 href="{{ route('categories.index') }}"
