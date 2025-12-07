@@ -27,7 +27,9 @@
                 <th class="text-left w-[20%] text-xl p-4">Nome</th>
                 <th class="text-left w-[20%] text-xl p-4">Cargo</th>
                 <th class="text-left w-[20%] text-xl p-4">Email</th>
-                <th class="text-left w-[10%] text-xl p-4">ID da Escola</th>
+                @if(auth()->user()->role == 1)
+                    <th class="text-left w-[10%] text-xl p-4">ID da escola</th>
+                @endif
                 <th class="text-left w-[10%] text-xl p-4">Ação</th>
             </tr>
         </thead>
@@ -40,7 +42,9 @@
                     <td class="text-left w-[20%] text-lg px-4 py-2">{{ $librarian->name }}</td>
                     <td class="text-left w-[20%] text-lg px-4 py-2">{{ $librarian->role }}</td>
                     <td class="text-left w-[20%] text-lg px-4 py-2">{{ $librarian->email }}</td>
-                    <td class="text-left w-[10%] text-lg px-4 py-2">{{ $librarian->school_id }}</td>
+                    @if(auth()->user()->role == 1)
+                        <td class="text-left w-[10%] text-lg px-4 py-2">{{ $librarian->school_id }}</td>
+                    @endif
 
                     <td class="text-left w-[10%] text-lg px-4 py-2 flex gap-4" id="action">
                         <a href="{{ route('librarians.edit', $librarian->id) }}" id="editButton"  class="text-blue-600 hover:text-blue-900 font-semibold">

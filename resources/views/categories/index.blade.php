@@ -25,7 +25,9 @@
                 <th class="w-[1%]"></th>
                 <th class="text-left w-[10%] text-xl p-4">ID</th>
                 <th class="text-left w-[40%] text-xl p-4">Categoria</th>
-                <th class="text-left w-[30%] text-xl p-4">ID da Escola</th>
+                @if(auth()->user()->role == 1)
+                    <th class="text-left w-[30%] text-xl p-4">ID da escola</th>
+                @endif
                 <th class="text-left w-[10%] text-xl p-4">Ação</th>
             </tr>
         </thead>
@@ -36,7 +38,9 @@
                     <td class="w-[1%]"></td>
                     <td class="text-left w-[10%] text-lg px-4 py-2 font-bold">{{ $category->id }}</td>
                     <td class="text-left w-[40%] text-lg px-4 py-2">{{ $category->name }}</td>
-                    <td class="text-left w-[30%] text-lg px-4 py-2">{{ $category->school_id }}</td>
+                    @if(auth()->user()->role == 1)
+                        <td class="text-left w-[30%] text-lg px-4 py-2">{{ $category->school_id }}</td>
+                    @endif
 
                     <td class="text-left w-[10%] text-lg px-4 py-2 flex gap-4" id="action">
                         <a href="{{ route('categories.edit', $category->id) }}" id="editButton" class="text-blue-600 hover:text-blue-900 font-semibold">

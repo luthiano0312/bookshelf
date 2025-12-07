@@ -29,7 +29,9 @@
                 <th class="text-left w-[20%] text-xl p-4">Nome do livro</th>
                 <th class="text-left w-[15%] text-xl p-4">Data devolução</th>
                 <th class="text-left w-[10%] text-xl p-4">Status</th>
-                <th class="text-left w-[10%] text-xl p-4">ID escola</th>
+                @if(auth()->user()->role == 1)
+                    <th class="text-left w-[10%] text-xl p-4">ID da escola</th>
+                @endif
                 <th class="text-left w-[10%] text-xl p-4">Ação</th>
             </tr>
         </thead>
@@ -54,8 +56,9 @@
                 <td class="text-left w-[15%] text-lg px-4 py-2">{{ $loan->returnDate_formatted }}</td>
 
                 <td class="text-left w-[10%] text-lg px-4 py-2">{{ $loan->status }}</td>
-
-                <td class="text-left w-[10%] text-lg px-4 py-2">{{ $loan->school_id }}</td>
+                @if(auth()->user()->role == 1)
+                    <td class="text-left w-[10%] text-lg px-4 py-2">{{ $loan->school_id }}</td>
+                @endif
 
                 <td class="text-left w-[10%] text-lg px-4 py-2 flex gap-4" id="action">
                     <a href="{{ route('loans.edit', $loan->id) }}" 

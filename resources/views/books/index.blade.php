@@ -30,7 +30,9 @@
                 <th class="text-left w-[30%] text-xl p-4">Título</th>
                 <th class="text-left w-[25%] text-xl p-4">Autor</th>
                 <th class="text-left w-[20%] text-xl p-4">Categoria</th>
-                <th class="text-left w-[10%] text-xl p-4">Escola</th>
+                @if(auth()->user()->role == 1)
+                    <th class="text-left w-[10%] text-xl p-4">ID da escola</th>
+                @endif
                 <th class="text-left w-[10%] text-xl p-4">Ação</th>
             </tr>
         </thead>
@@ -50,9 +52,11 @@
                         {{ $book->category->name ?? '—' }}
                     </td>
 
-                    <td class="text-left text-lg px-4 py-2">
-                        {{ $book->school_id }}
-                    </td>
+                    @if(auth()->user()->role == 1)
+                        <td class="text-left text-lg px-4 py-2">
+                            {{ $book->school_id }}
+                        </td>
+                    @endif
 
                     <td class="text-left text-lg px-4 py-2 flex gap-4" id="action">
                         <a href="{{ route('books.edit', $book->id) }}" id="editButton" class="text-blue-600 hover:text-blue-900 font-semibold">
